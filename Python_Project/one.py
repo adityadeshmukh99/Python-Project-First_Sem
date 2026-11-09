@@ -1,7 +1,13 @@
 FILENAME = "atm.txt"
+import os
+
+# Get the exact folder where this Python script is saved
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Force Python to look for atm.txt right inside that same folder
+FILENAME = os.path.join(BASE_DIR, "atm.txt")
 
 def read_data():
-  """Reads PIN, balance, and transactions from atm.txt."""
+  
   with open(FILENAME, "r") as f:
     lines = [line.strip() for line in f.readlines()]
 
@@ -14,12 +20,12 @@ def read_data():
   except ValueError:
     balance = 10000.0
 
-  transactions = lines[2:]  # Any subsequent lines store transaction logs
+  transactions = lines[2:] 
   return stored_pin, balance, transactions
 
 
 def write_data(pin, balance, transactions):
-  """Saves updated balance and transactions back to atm.txt."""
+  
   with open(FILENAME, "w") as f:
     f.write(f"{pin}\n")
     f.write(f"{balance}\n")
@@ -40,8 +46,7 @@ def deposit(pin, balance, transactions):
       return balance
 
     balance += amount
-    # tx = f"Withdraw {int(amount)} | Balance: {int(balance)}"  # or custom format
-    # For deposit formatting matching test cases:
+    
     tx = f"Deposit {int(amount)} | Balance: {int(balance)}"
     transactions.append(tx)
     write_data(pin, balance, transactions)
@@ -86,8 +91,7 @@ def mini_statement(transactions):
 
 def main():
   stored_pin, balance, transactions = read_data()
-
-  # PIN Verification with maximum of 3 attempts
+  
   attempts = 3
   login_successful = False
   while attempts > 0:
@@ -106,7 +110,7 @@ def main():
   if not login_successful:
     return
 
-  # Main ATM Menu Loop
+
   while True:
     print("\n--- ATM Menu ---")
     print("1. Check Balance")
