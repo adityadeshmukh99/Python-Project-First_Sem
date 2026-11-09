@@ -7,10 +7,21 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FILENAME = os.path.join(BASE_DIR, "atm.txt")
 
 def read_data():
+  try:
+    with open(FILENAME, "r") as f:
+      lines = [line.strip() for line in f.readlines()]
+  except FileNotFoundError:
+    print("The file atm.txt is missing from the folder!")
+    print()
+    print("Creating a file.....")
+    print("Setting the default value.......")
+    print()
+    stored_pin = "1234"
+    balance = 10000.0
+    transactions = []
+    write_data(stored_pin, balance, transactions)
+    return stored_pin, balance, transactions
   
-  with open(FILENAME, "r") as f:
-    lines = [line.strip() for line in f.readlines()]
-
   if len(lines) < 2:
     return "1234", 10000.0, []
 
