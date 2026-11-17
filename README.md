@@ -3,9 +3,9 @@
 A Python 3 console-based ATM simulation project featuring user authentication, balance checking, deposits, withdrawals, mini statement tracking, robust error handling, and text file data persistence.
 
 ## Student Details
-**Name** - Aditya Deshmukh
-**Class** - Section-K
-**ERP**: RU-26-01618
+- **Name** - Aditya Deshmukh
+- **Class** - Section-K
+- **ERP**: RU-26-01618
 ## Features
 - **Secure PIN Authentication:** Verifies the user PIN with a maximum of 3 attempts before locking the account.
 - **Core Operations:** Supports balance checking, money deposits, withdrawals, and mini statements using modular functions.
